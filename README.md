@@ -1,1 +1,297 @@
-# sample
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce Website</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        a {
+            text-decoration: none;
+            color: rgb(208, 162, 24);
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #333;
+            color: rgb(24, 227, 122);
+            padding: 10px 20px;
+        }
+
+        header .logo {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 15px;
+        }
+
+        nav ul li {
+            display: inline;
+        }
+
+        nav ul li a {
+            color: white;
+            font-size: 16px;
+            padding: 5px 10px;
+            transition: background-color 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: #555;
+            border-radius: 5px;
+        }
+
+        /* Main Content Styles */
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .product {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .product img {
+            width: 100%;
+            height: auto;
+        }
+
+        .product h3 {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        .product p {
+            color: #555;
+            margin: 10px 0;
+        }
+
+        .product button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .product button:hover {
+            background-color: #218838;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 20px;
+        }
+
+        /* Shopping Cart Styles */
+        .cart {
+            position: fixed;
+            top: 50px;
+            right: 20px;
+            width: 300px;
+            background-color: rgb(218, 17, 17);
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            display: none;
+        }
+
+        .cart h3 {
+            margin-top: 0;
+        }
+
+        .cart ul {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .cart ul li {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .cart ul li span {
+            font-size: 14px;
+        }
+
+        .cart button {
+            width: 100%;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 0;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .cart button:hover {
+            background-color: #0056b3;
+        }
+
+        .auth {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .auth form {
+            width: 100%;
+            max-width: 300px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .auth form input {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .auth form button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .auth form button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Nanda enterprises </div>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Shop</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#cart" onclick="toggleCart()">Cart</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="auth">
+        <form id="loginForm">
+            <input type="email" placeholder="Email" required>
+            <input type="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <main>
+        <section class="products">
+            <div class="product">
+                <img src="https://via.placeholder.com/250" alt="Product 1">
+                <h3>Product 1</h3>
+                <p>$20.00</p>
+                <button onclick="addToCart('Product 1', 20.00)">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="https://via.placeholder.com/250" alt="Product 2">
+                <h3>Product 2</h3>
+                <p>$25.00</p>
+                <button onclick="addToCart('Product 2', 25.00)">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="https://via.placeholder.com/250" alt="Product 3">
+                <h3>Product 3</h3>
+                <p>$15.00</p>
+                <button onclick="addToCart('Product 3', 15.00)">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="https://via.placeholder.com/250" alt="Product 4">
+                <h3>Product 4</h3>
+                <p>$30.00</p>
+                <button onclick="addToCart('Product 4', 30.00)">Add to Cart</button>
+            </div>
+        </section>
+
+        <div class="cart" id="cart">
+            <h3>Your Cart</h3>
+            <ul id="cartItems"></ul>
+            <button onclick="checkout()">Checkout</button>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 MyStore. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const cart = [];
+
+        function addToCart(productName, productPrice) {
+            cart.push({ name: productName, price: productPrice });
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const cartItems = document.getElementById('cartItems');
+            cartItems.innerHTML = '';
+            cart.forEach((item, index) => {
+                const li = document.createElement('li');
+                li.innerHTML = `${item.name} - $${item.price.toFixed(2)} <span onclick="removeFromCart(${index})">&times;</span>`;
+                cartItems.appendChild(li);
+            });
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function toggleCart() {
+            const cartDiv = document.getElementById('cart');
+            cartDiv.style.display = cartDiv.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function checkout() {
+            alert('Checkout feature coming soon!');
+        }
+    </script>
+</body>
+</html>
